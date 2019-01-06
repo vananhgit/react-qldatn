@@ -234,6 +234,7 @@ class ShowLop extends Component {
                             }
                         </div>
                     </CardHeader>
+                    
                     <CardBody>
                         <form className={ classes.container } noValidate autoComplete="off">
                             <TextField
@@ -297,6 +298,8 @@ class ShowLop extends Component {
                                     null
                             }
                         </form>
+                        
+                        <h3>Danh sách sinh viên </h3>
                         <div className={ classes.root }>
         
                             <TabContainer>{ dsSVTableComponent }</TabContainer> }

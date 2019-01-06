@@ -2,34 +2,17 @@ import React, { Component } from "react";
 import { NavLink } from "react-router-dom";
 // @material-ui/core components
 import withStyles from "@material-ui/core/styles/withStyles";
-import Grid from "@material-ui/core/Grid";
-import IconButton from '@material-ui/core/IconButton';
-import Icon from '@material-ui/core/Icon';
 import TextField from '@material-ui/core/TextField';
 // core components
 
 import GridContainer from "components/Grid/GridContainer.jsx";
-import Button from "components/CustomButtons/Button.jsx";
 import Card from "components/Card/Card.jsx";
 import CardHeader from "components/Card/CardHeader.jsx";
 
 import CardBody from "components/Card/CardBody.jsx";
 
-import AppBar from '@material-ui/core/AppBar';
-import Tabs from '@material-ui/core/Tabs';
-import Tab from '@material-ui/core/Tab';
-import PhoneIcon from '@material-ui/icons/Phone';
-import FavoriteIcon from '@material-ui/icons/Favorite';
-import PersonPinIcon from '@material-ui/icons/PersonPin';
 import Typography from '@material-ui/core/Typography';
 import MaterialTable from 'material-table';
-function TabContainer(props) {
-    return (
-        <Typography component="div" >
-            { props.children }
-        </Typography>
-    );
-}
 
 
 const styles = {
@@ -86,45 +69,13 @@ class ShowKhoa extends Component {
                     ]
                 },
             },
-            danhSachGiangVien: {
-                table: {
-                    header: [
-                        { title: 'STT', field: 'id' },
-                        { title: 'Học vị', field: 'hocVi' },
-                        { title: 'Tên Giảng viên', field: 'tenGV' },
-                        { title: 'SĐT', field: 'sdt' },//, type: 'numeric' 
-                    ],
-                    data: [
-                        { hocVi: "TS.", tenGV: "Lê Đình Sinh", sdt: "0969123456" },
-                        { hocVi: "TS.", tenGV: "Lê Đình Làng", sdt: "0969123456" },
-                        { hocVi: "TS.", tenGV: "Lê Đình Núi", sdt: "0969123456" },
-                        { hocVi: "TS.", tenGV: "Lê Đình Bạn Sơn", sdt: "0969123456" },
-                        { hocVi: "TS.", tenGV: "Lê Đình", sdt: "0969123456" },
-                    ]
-                },
-            },
-            danhSachLop: {
-                table: {
-                    header: [
-                        { title: 'STT', field: 'id' },
-                        { title: 'Tên Sinh Vien', field: 'tenSinhVien' },
-                        { title: 'Lớp', field: 'lop' },
-                        { title: 'Email', field: 'email' },
-                        { title: 'Địa Chỉ', field: 'diaChi' },
-                    ],
-                    data: [
-                        { tenSinhVien: "Lê Đình Sinh", lop: "15TCLC2", email: "sinh@gmail.com", diaChi: "Quảng Nam, Việt Nam"},
-                       
-                    ]
-                },
-            },
         },
         oldData: {
-            email: "cntt@ledinhsinh.edu.vn",
+            tenSV: "Vân Anh Óc Chó",
             tenKhoa: "Công nghệ thông tin",
             moTa: "Lorem ipsum dolor nuclear missile flashbang grenade m4 silence b51 say hetshot",
         },
-        email: "cntt@ledinhsinh.edu.vn",
+        tenSV: "Vân Anh Óc Chó",
         tenKhoa: "Công nghệ thông tin",
         moTa: "Lorem ipsum dolor nuclear missile flashbang grenade m4 silence b51 say hetshot",
         currentTabValue: 0,
@@ -176,10 +127,8 @@ class ShowKhoa extends Component {
 
     render() {
         const { classes } = this.props;
-        const { currentTabValue } = this.state;
         const dssvTableData = this.rawDataToTable(this.state.SinhVienData.danhSachSinhVien);
-        const dsgvTableData = this.rawDataToTable(this.state.SinhVienData.danhSachGiangVien);
-        const dslopTableData = this.rawDataToTable(this.state.SinhVienData.danhSachLop);
+
 
         const dssvTableComponent = <MaterialTable
             // title={""}
@@ -247,158 +196,16 @@ class ShowKhoa extends Component {
             } }
         />
 
-        const dsgvTableComponent = <MaterialTable
-            // title={""}
-            columns={ dsgvTableData.tableHead }
-            data={ dsgvTableData.tableData }
-            actions=
-            {
-                [
-                    {
-                        icon: 'open_in_new',
-                        tooltip: 'Chi tiết',
-                        onClick: (event, rowData) => {
-                            // this.props.history.push("/quanlychung/dskhoa/1")
-                        },
-                    },
-                    {
-                        icon: 'delete',
-                        tooltip: 'Xóa',
-                        onClick: (event, rowData) => {
-                            alert('You clicked user ' + rowData.tenGV)
-                        },
-                    }
-                ]
-            }
-            options={
-                {
-                    actionsColumnIndex: -1,
-                    filtering: true,
-                    toolbar: false,
-                    search: true,
-                    sorting: true,
-                }
-            }
-            localization={ {
-                pagination: {
-                    labelDisplayedRows: 'Mục {from} đến {to} trong tổng số {count}', // {from}-{to} of {count}
-                    labelRowsPerPage: 'Số hàng hiển thị:', // Rows per page:
-                    firstAriaLabel: 'Trang đầu', // First Page
-                    firstTooltip: 'Trang đầu', // First Page
-                    previousAriaLabel: 'Trang trước', // Previous Page
-                    previousTooltip: 'Trang trước', // Previous Page
-                    nextAriaLabel: 'Trang tiếp', // Next Page
-                    nextTooltip: 'Trang tiếp', // Next Page
-                    lastAriaLabel: 'Trang cuối', // Last Page
-                    lastTooltip: 'Trang cuối', // Last Page
-                },
-                toolbar: {
-                    nRowsSelected: '{0} hàng được chọn', // {0} row(s) selected
-                    showColumnsTitle: 'Các cột hiển thị', // Show Columns
-                    showColumnsAriaLabel: 'Các cột hiển thị', // Show Columns
-                    exportTitle: 'Xuất file', // Export
-                    exportAriaLabel: 'Xuất file', // Export
-                    exportName: 'Xuấy file CSV', // Export as CSV
-                    searchTooltip: 'Tìm kiếm', // Search
-                },
-                header: {
-                    actions: 'Hành động', // Actions
-                },
-                body: {
-                    emptyDataSourceMessage: 'Không có dữ liệu', // No records to display
-                    filterRow: {
-                        filterTooltip: 'Bộ lọc', // Filter
-                    },
-                },
-            } }
-        />
 
-        const dslopTableComponent = <MaterialTable
-            // title={""}
-            columns={ dslopTableData.tableHead }
-            data={ dslopTableData.tableData }
-            actions=
-            {
-                [
-                    {
-                        icon: 'open_in_new',
-                        tooltip: 'Chi tiết',
-                        onClick: (event, rowData) => {
-                            // this.props.history.push("/quanlychung/dskhoa/1")
-                        },
-                    },
-                    {
-                        icon: 'delete',
-                        tooltip: 'Xóa',
-                        onClick: (event, rowData) => {
-                            alert('You clicked user ' + rowData.tenSinhVien)
-                        },
-                    }
-                ]
-            }
-            options={
-                {
-                    actionsColumnIndex: -1,
-                    filtering: true,
-                    toolbar: false,
-                    search: true,
-                    sorting: true,
-                }
-            }
-            localization={ {
-                pagination: {
-                    labelDisplayedRows: 'Mục {from} đến {to} trong tổng số {count}', // {from}-{to} of {count}
-                    labelRowsPerPage: 'Số hàng hiển thị:', // Rows per page:
-                    firstAriaLabel: 'Trang đầu', // First Page
-                    firstTooltip: 'Trang đầu', // First Page
-                    previousAriaLabel: 'Trang trước', // Previous Page
-                    previousTooltip: 'Trang trước', // Previous Page
-                    nextAriaLabel: 'Trang tiếp', // Next Page
-                    nextTooltip: 'Trang tiếp', // Next Page
-                    lastAriaLabel: 'Trang cuối', // Last Page
-                    lastTooltip: 'Trang cuối', // Last Page
-                },
-                toolbar: {
-                    nRowsSelected: '{0} hàng được chọn', // {0} row(s) selected
-                    showColumnsTitle: 'Các cột hiển thị', // Show Columns
-                    showColumnsAriaLabel: 'Các cột hiển thị', // Show Columns
-                    exportTitle: 'Xuất file', // Export
-                    exportAriaLabel: 'Xuất file', // Export
-                    exportName: 'Xuấy file CSV', // Export as CSV
-                    searchTooltip: 'Tìm kiếm', // Search
-                },
-                header: {
-                    actions: 'Hành động', // Actions
-                },
-                body: {
-                    emptyDataSourceMessage: 'Không có dữ liệu', // No records to display
-                    filterRow: {
-                        filterTooltip: 'Bộ lọc', // Filter
-                    },
-                },
-            } }
-        />
+
+  
+        
 
         return (
             <GridContainer>
-                <Grid>
-                    <NavLink to="/quanly/quanlychung/dssv/">Danh sách sinh viên</NavLink> > { this.state.SinhVienData.id }.{ this.state.tenSinhVien }
-                </Grid>
                 <Card>
                     <CardHeader color="primary">
-                        <h4 className={ classes.cardTitleWhite }>SinhVien { this.state.tenKhoa }</h4>
-                        <div style={ { float: "right" } }>
-                            {
-                                !this.state.isEditing ? (
-                                    <IconButton onClick={ this.handleEditClick }>
-                                        <Icon>
-                                            edit
-                                        </Icon>
-                                    </IconButton>
-                                ) :
-                                    null
-                            }
-                        </div>
+                        <h4 className={ classes.cardTitleWhite }>Chi Tiết Thông Tin Sinh  Viên</h4>
                     </CardHeader>
                     <CardBody>
                         <form className={ classes.container } noValidate autoComplete="off">
@@ -421,7 +228,24 @@ class ShowKhoa extends Component {
                             />
                             <TextField
                                 id="standard-name"
-                                label="Email"
+                                label="Tên Sinh Viên"
+                                style={ { margin: 8 } }
+                                className={ classes.textField }
+                                value={ this.state.tenSV }
+                                onChange={ this.handleChange('tenSV') }
+                                margin="normal"
+                                disabled={ !this.state.isEditing }
+                                InputProps={ {
+                                    disableUnderline: !this.state.isEditing,
+                                    style: { "color": "black" }
+                                } }
+                                InputLabelProps={ {
+                                    shrink: true
+                                } }
+                            />
+                            <TextField
+                                id="standard-name"
+                                label="SĐT"
                                 style={ { margin: 8 } }
                                 className={ classes.textField }
                                 value={ this.state.email }
@@ -451,36 +275,10 @@ class ShowKhoa extends Component {
                                     disableUnderline: !this.state.isEditing,
                                     style: { "color": "black" }
                                 } }
-                                disabled={ !this.state.isEditing }
+                                
                             />
-                            {
-                                this.state.isEditing ? (
-                                    <div style={{ float: "right", marginBottom:"10px"}}>
-                                        <Button color="primary" key="1" onClick={ this.handleDataChangeClick }>Lưu</Button>,
-                                        <Button key="2" onClick={ this.handleDataChangeAbortClick }>Hủy bỏ</Button>
-                                    </div>
-                                ) :
-                                    null
-                            }
                         </form>
                         <div className={ classes.root }>
-                            <AppBar position="static" color="default">
-                                <Tabs
-                                    value={ currentTabValue }
-                                    onChange={ this.handleTabValueChange }
-                                    scrollable
-                                    scrollButtons="on"
-                                    indicatorColor="primary"
-                                    textColor="primary"
-                                >
-                                    <Tab label="Thông tin chi tiết" icon={ <PersonPinIcon /> } />
-                                    {/* <Tab label="Danh sách sinh viên" icon={ <PhoneIcon /> } />
-                                    <Tab label="Danh sách giảng viên" icon={ <FavoriteIcon /> } /> */}
-                                </Tabs>
-                            </AppBar>
-                            { currentTabValue === 0 && <TabContainer>{ dslopTableComponent }</TabContainer> }
-                            {/* { currentTabValue === 1 && <TabContainer>{ dssvTableComponent }</TabContainer> }
-                            { currentTabValue === 2 && <TabContainer>{ dsgvTableComponent }</TabContainer> } */}
                         </div>
 
                     </CardBody>

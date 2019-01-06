@@ -8,17 +8,16 @@ import LocationOn from "@material-ui/icons/LocationOn";
 import Notifications from "@material-ui/icons/Notifications";
 // core components/views
 import DashboardPage from "views/Dashboard/Dashboard.jsx";
-import UserProfile from "views/UserProfile/UserProfile.jsx";
+import UserProfile from "views/DashGiangVien/UserProfile/UserProfile.jsx";
 import TableList from "views/TableList/TableList.jsx";
 import Typography from "views/Typography/Typography.jsx";
 import Maps from "views/Maps/Maps.jsx";
 import NotificationsPage from "views/Notifications/Notifications.jsx";
 import Auth from "../views/Auth/Auth.jsx";
 import QuanLyTienDo from "../views/QuanLyTienDo/QuanLyTienDo.jsx";
-import DanhSachKhoa from "views/DanhSachKhoa/DanhSachKhoa.jsx";
-import ShowKhoa from "views/DanhSachKhoa/show/ShowKhoa.jsx";
-import TaoTaiKhoan from "views/DSTaiKhoan/TaoTaiKhoan.jsx";
-import DSTaiKhoan from "views/DSTaiKhoan/DSTaiKhoan.jsx";
+import DanhSachDoAn from "views/DashGiangVien/QuanLyDoAn/DanhSachDoAn.jsx";
+import DanhSachDoAnMau from "../views/DashGiangVien/QuanLyDoAn/DanhSachDoAnMau.jsx";
+
 
 
 const dashboardRoutes = [
@@ -40,70 +39,11 @@ const dashboardRoutes = [
     slash: true,
   },
   {
-    path: "/giangvien/quanlytaikhoan",
-    sidebarName: "Quản lý tài khoản",
-    navbarName: "Table List",
-    icon: "content_paste",
-    childLink: [
-      {
-        path: "/giangvien/quanlytaikhoan/taotaikhoan",
-        sidebarName: "Tạo tài khoản",
-        navbarName: "Tạo tài khoản",
-        icon: "content_paste",
-        component: TaoTaiKhoan
-      },
-      {
-        path: "/giangvien/quanlytaikhoan/danhsachtaikhoan",
-        sidebarName: "Danh sách tài khoản",
-        navbarName: "Danh sách tài khoản",
-        icon: "content_paste",
-        component: DSTaiKhoan
-      }
-    ]
-  },
-  {
-    path: "/giangvien/quanlychung/dskhoa/:id",
-    sidebarName: "Khoa",
-    navbarName: "Khoa",
-    icon: "content_paste",
-    hide: true,
-    component: ShowKhoa
-  },// de truoc dskhoa
-  {
-    path: "/giangvien/quanlychung",
-    sidebarName: "Quản lý chung",
-    navbarName: "Table List",
-    icon: "content_paste",
-    childLink: [
-      {
-        path: "/giangvien/quanlychung/dskhoa",
-        sidebarName: "Khoa",
-        navbarName: "Khoa",
-        icon: "content_paste",
-        component: DanhSachKhoa
-      },
-      {
-        path: "/giangvien/quanlychung/dslop",
-        sidebarName: "Lớp",
-        navbarName: "Lớp",
-        icon: "content_paste",
-        component: TableList
-      },
-      {
-        path: "/giangvien/quanlychung/dsgv",
-        sidebarName: "Giảng viên",
-        navbarName: "Giảng viên",
-        icon: "content_paste",
-        component: TableList
-      },
-      {
-        path: "/giangvien/quanlychung/dssv",
-        sidebarName: "Sinh viên",
-        navbarName: "Sinh viên",
-        icon: "content_paste",
-        component: TableList
-      },
-    ]
+    path: "/giangvien/quanlysinhvien",
+    sidebarName: "Quản lí sinh viên",
+    navbarName: "Quản lí sinh viên",
+    icon: Person,
+    component: TableList
   },
   {
     path: "/giangvien/quanlydoan",
@@ -116,28 +56,14 @@ const dashboardRoutes = [
         sidebarName: "Quản lý đồ án",
         navbarName: "Quản lý đồ án",
         icon: LibraryBooks,
-        component: Typography
+        component: DanhSachDoAn
       },
       {
-        path: "/giangvien/phancong",
-        sidebarName: "Phân công hướng dẫn",
-        navbarName: "Phân công hướng dẫn",
+        path: "/giangvien/danhsachdoanmau",
+        sidebarName: "Danh sách đồ án mẫu",
+        navbarName: "Danh sách đồ án mẫu",
         icon: BubbleChart,
-        component: null
-      },
-      {
-        path: "/giangvien/tiendo",
-        sidebarName: "Quản lý tiến độ",
-        navbarName: "Quản lý tiến độ",
-        icon: BubbleChart,
-        component: QuanLyTienDo
-      },
-      {
-        path: "/giangvien/hoidongbaove",
-        sidebarName: "Hội đồng bảo vệ",
-        navbarName: "Hội đồng bảo vệ",
-        icon: BubbleChart,
-        component: null
+        component: DanhSachDoAnMau
       },
     ]
   },

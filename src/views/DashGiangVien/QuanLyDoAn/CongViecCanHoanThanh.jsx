@@ -93,7 +93,7 @@ class BaoCaoTienDo extends Component {
         baocaoTienDo : [
             {
                 title1:"Báo Cáo Tiến Độ Lần 1",
-                mota1:"Đã hoàn thành template ",
+                mota1:"Xây dựng template cơ bản ",
                 mota2:"Chưa viết báo cáo",
                 ngayKetThuc: new Date().addDays(15).toJSON(),
             },
@@ -234,9 +234,6 @@ class BaoCaoTienDo extends Component {
                         <GridContainer>
                             <GridItem xs={ 12 } sm={ 12 } md={ 12 }>
                                 <GridContainer>
-                                    <GridItem xs={ 12 } sm={ 12 } md={ 12 }>
-                                        <h4><strong>Tên Sinh Viên: {this.state.tenSV}</strong></h4>
-                                    </GridItem>
                                     <GridItem xs={ 12 } sm={ 12 } md={ 12 }>
                                         <h4><strong>Tên Đề Tài: {this.state.tenDeTai}</strong></h4>
                                     </GridItem>

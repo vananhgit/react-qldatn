@@ -60,9 +60,11 @@ class NewLopModal extends Component {
     state = {
         khoa:"CNTT",
         listkhoa: ["CNTT","Điện tử","Hóa","Điện tử- Viễn Thông", "Xây dựng"       
-        ], 
+        ],
         Hinhthuc:"Chính quy",
-        listHinhthuc: ["Chính quy","Liên thông- Chính quy"],         
+        listHinhthuc: ["CNPM","Mạng Truyền Thông","Hệ Thống Nhúng"],
+        listSLSV: ["1","2","3"],
+        soSV:"Số lượng sinh viên"         
     };
 
     handleChange = event => {
@@ -92,7 +94,7 @@ class NewLopModal extends Component {
                                 </div>
                                 <Card>
                                     <CardHeader color="primary">
-                                        <h5 style={{ padding: "0px", margin: "0px"}}>THÊM LỚP</h5>
+                                        <h5 style={{ padding: "0px", margin: "0px"}}>THÊM ĐỒ ÁN MẪU</h5>
                                     </CardHeader>
                                     <CardBody>
                                         <GridContainer>
@@ -100,7 +102,7 @@ class NewLopModal extends Component {
                                         <GridItem xs={ 12 } sm={ 12 } md={ 5 }>
                                         <TextField
                                             id="standard-name"
-                                            label="Tên Lớp"
+                                            label="Tên Đề tài"
                                             style={ { margin: 8 } }
                                             className={ classes.textField }
                                             margin="normal"
@@ -116,14 +118,11 @@ class NewLopModal extends Component {
                                     <GridItem xs={ 12 } sm={ 12 } md={ 5 }>
                                         <TextField
                                             id="standard-name"
-                                            label="Số lượng sinh viên"
+                                            label="Mô Tả Đề Tài"
                                             style={ { margin: 8 } }
                                             className={ classes.textField }
-                                            value={ this.state.tenTaiKhoan }
-            
                                             margin="normal"
                                             InputProps={ {
-
                                                 style: { "color": "black" }
                                             } }
                                             InputLabelProps={ {
@@ -149,6 +148,27 @@ class NewLopModal extends Component {
                                                     this.state.listkhoa.map((khoa, index) => {
                                                         return (
                                                             <MenuItem value={ khoa }>{ khoa}</MenuItem>
+                                                        )
+                                                    })
+                                                }
+                                            </Select>
+                                        </FormControl>
+                                    </GridItem>
+                                    <GridItem xs={ 12 } sm={ 12 } md={ 5 }>
+                                        <FormControl style={ { margin: 8, minWidth: 120, } } fullwidth className={ classes.formControl }>
+                                            <InputLabel fullwidth shrink>Số Lượng Sinh Viên</InputLabel>
+                                            <Select
+                                                 value={this.state.soSV}
+                                                 onChange={ this.handleChange }
+                                                 inputProps={{
+                                                    name: 'soSV'
+                                                  }}
+                                                fullwidth
+                                            >
+                                                {
+                                                    this.state.listSLSV.map((soSV, index) => {
+                                                        return (
+                                                            <MenuItem value={ soSV }>{ soSV}</MenuItem>
                                                         )
                                                     })
                                                 }
